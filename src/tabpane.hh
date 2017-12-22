@@ -14,6 +14,7 @@ public:
 	static void addNewTab(std::string title);
 	static void addNewTab();
 	static Editor *currentWidget();
+	static void setCurrentFilePath(std::string path);
 private:
 	static void onCloseClicked(Gtk::Widget *btn);
 };

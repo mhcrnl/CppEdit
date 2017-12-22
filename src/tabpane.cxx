@@ -2,6 +2,7 @@
 #include <gtkmm/button.h>
 
 #include "tabpane.hh"
+#include "file_utils.hh"
 
 Gtk::Notebook *TabPane::tabs;
 
@@ -23,11 +24,21 @@ void TabPane::addNewTab(std::string title) {
 	tabLabel->show_all();
 	
 	Editor *pg = new Editor;
+	pg->setTabLabel(label);
+	
+	if (title=="untitled") {
+		pg->setUntitled(true);
+	} else {
+		pg->setUntitled(false);
+	}
+	pg->setSaved(true);
+	
+	int count = tabs->get_n_pages();
 	tabs->append_page(*pg,*tabLabel);
+	tabs->show_all();
+	tabs->set_current_page(count);
 	
 	close->signal_clicked().connect(sigc::bind<Gtk::Widget *>(sigc::ptr_fun(&TabPane::onCloseClicked),pg));
-	
-	tabs->show_all();
 }
 
 void TabPane::addNewTab() {
@@ -41,6 +52,13 @@ Editor *TabPane::currentWidget() {
 	}
 	Editor *edit = static_cast<Editor *>(tabs->get_nth_page(current));
 	return edit;
+}
+
+void TabPane::setCurrentFilePath(std::string path) {
+	Editor *edit = currentWidget();
+	edit->setPath(path);
+	Gtk::Label *label = edit->getLabel();
+	label->set_text(FileUtils::fileName(path));
 }
 
 void TabPane::onCloseClicked(Gtk::Widget *btn) {

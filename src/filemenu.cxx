@@ -1,10 +1,10 @@
 #include <gtkmm/menu.h>
 #include <gtkmm/filechooserdialog.h>
-#include <fstream>
 
 #include "filemenu.hh"
 #include "tabpane.hh"
 #include "editor.hh"
+#include "actions.hh"
 
 FileMenu::FileMenu(Glib::RefPtr<Gtk::Application> appP) {
 	app = appP;
@@ -47,18 +47,7 @@ void FileMenu::onOpenClicked() {
 		std::string selected = dialog->get_filename();
 		delete dialog;
 		
-		std::ifstream reader(selected);
-		std::string content = "";
-		if (reader.is_open()) {
-			std::string line = "";
-			while (getline(reader,line)) {
-				content+=line+"\n";
-			}
-			reader.close();
-		}
-		
-		Editor *edit = TabPane::currentWidget();
-		edit->setText(content);
+		Actions::openFile(selected);
 	}
 }
 
