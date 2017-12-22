@@ -12,7 +12,7 @@ void Actions::openFile(std::string path) {
 	bool untitled = edit->isUntitled();
 	bool saved = edit->isSaved();
 	
-	if (untitled==false) {
+	if ((untitled==false)||((untitled==true)&&(saved==false))) {
 		TabPane::addNewTab();
 		edit = TabPane::currentWidget();
 	}
