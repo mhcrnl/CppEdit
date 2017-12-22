@@ -15,16 +15,19 @@ TabPane::TabPane() {
 
 void TabPane::addNewTab(std::string title) {
 	Gtk::HBox *tabLabel = new Gtk::HBox(false,0);
+	Gtk::Label *saveStatus = new Gtk::Label("");
 	Gtk::Label *label = new Gtk::Label(title);
 	Gtk::Button *close = new Gtk::Button();
 	close->set_image_from_icon_name("edit-delete");
 	close->set_always_show_image(true);
+	tabLabel->pack_start(*saveStatus,false,false,0);
 	tabLabel->pack_start(*label,false,false,0);
 	tabLabel->pack_start(*close,false,false,0);
 	tabLabel->show_all();
 	
 	Editor *pg = new Editor;
 	pg->setTabLabel(label);
+	pg->setSaveStatusLabel(saveStatus);
 	
 	if (title=="untitled") {
 		pg->setUntitled(true);

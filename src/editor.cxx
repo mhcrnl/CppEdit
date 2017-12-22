@@ -3,6 +3,7 @@
 Editor::Editor() {
 	edit = new Gtk::TextView;
 	edit->set_wrap_mode(Gtk::WRAP_WORD);
+	edit->get_buffer()->signal_changed().connect(sigc::mem_fun(*this,&Editor::onChanged));
 	this->add(*edit);
 }
 
@@ -30,6 +31,10 @@ Gtk::Label *Editor::getLabel() {
 	return tabLabel;
 }
 
+void Editor::setSaveStatusLabel(Gtk::Label *label) {
+	saveStatus = label;
+}
+
 void Editor::setUntitled(bool u) {
 	untitled = u;
 }
@@ -40,8 +45,14 @@ bool Editor::isUntitled() {
 
 void Editor::setSaved(bool s) {
 	saved = s;
+	saveStatus->set_text("");
 }
 
 bool Editor::isSaved() {
 	return saved;
+}
+
+void Editor::onChanged() {
+	saveStatus->set_text("*");
+	saved = false;
 }

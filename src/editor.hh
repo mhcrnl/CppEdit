@@ -14,6 +14,7 @@ public:
 	std::string getPath();
 	void setTabLabel(Gtk::Label *label);
 	Gtk::Label *getLabel();
+	void setSaveStatusLabel(Gtk::Label *label);
 	void setUntitled(bool u);
 	bool isUntitled();
 	void setSaved(bool s);
@@ -21,7 +22,8 @@ public:
 private:
 	Gtk::TextView *edit;
 	std::string filePath;
-	Gtk::Label *tabLabel;
+	Gtk::Label *tabLabel, *saveStatus;
 	bool untitled = true;
 	bool saved = true;
+	void onChanged();
 };

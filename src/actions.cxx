@@ -19,5 +19,6 @@ void Actions::openFile(std::string path) {
 	
 	edit->setText(content);
 	edit->setUntitled(false);
+	edit->setSaved(true);
 	TabPane::setCurrentFilePath(path);
 }
