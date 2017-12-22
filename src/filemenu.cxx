@@ -15,14 +15,17 @@ FileMenu::FileMenu(Glib::RefPtr<Gtk::Application> appP) {
 	
 	newFile = new MenuItem("New");
 	open = new MenuItem("Open");
+	save = new MenuItem("Save");
 	quit = new MenuItem("Quit");
 	
 	newFile->signal_activate().connect(sigc::mem_fun(*this,&FileMenu::onNewFileClicked));
 	open->signal_activate().connect(sigc::mem_fun(*this,&FileMenu::onOpenClicked));
+	save->signal_activate().connect(sigc::mem_fun(*this,&FileMenu::onSaveClicked));
 	quit->signal_activate().connect(sigc::mem_fun(*this,&FileMenu::onQuitClicked));
 	
 	menu->append(*newFile);
 	menu->append(*open);
+	menu->append(*save);
 	menu->append(*quit);
 }
 
@@ -30,6 +33,7 @@ FileMenu::~FileMenu() {
 	delete menu;
 	delete newFile;
 	delete open;
+	delete save;
 	delete quit;
 }
 
@@ -49,6 +53,10 @@ void FileMenu::onOpenClicked() {
 		
 		Actions::openFile(selected);
 	}
+}
+
+void FileMenu::onSaveClicked() {
+	Actions::saveFile();
 }
 
 void FileMenu::onQuitClicked() {

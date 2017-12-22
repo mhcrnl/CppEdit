@@ -22,3 +22,20 @@ void Actions::openFile(std::string path) {
 	edit->setSaved(true);
 	TabPane::setCurrentFilePath(path);
 }
+
+void Actions::saveFile() {
+	Editor *edit = TabPane::currentWidget();
+	if (edit->isUntitled()) {
+		//Call save-as function
+		edit = TabPane::currentWidget();
+	}
+	std::string path = edit->getPath();
+	std::string text = edit->getText();
+	
+	std::ofstream writer;
+	writer.open(path);
+	writer << text;
+	writer.close();
+	
+	edit->setSaved(true);
+}

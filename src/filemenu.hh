@@ -11,8 +11,9 @@ public:
 private:
 	Glib::RefPtr<Gtk::Application> app;
 	Gtk::Menu *menu;
-	MenuItem *newFile, *open, *quit;
+	MenuItem *newFile, *open, *save, *quit;
 	void onNewFileClicked();
 	void onOpenClicked();
+	void onSaveClicked();
 	void onQuitClicked();
 };

@@ -15,6 +15,10 @@ void Editor::setText(std::string text) {
 	edit->get_buffer()->set_text(text);
 }
 
+std::string Editor::getText() {
+	return edit->get_buffer()->get_text();
+}
+
 void Editor::setPath(std::string path) {
 	filePath = path;
 }

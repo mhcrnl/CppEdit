@@ -10,6 +10,7 @@ public:
 	Editor();
 	~Editor();
 	void setText(std::string text);
+	std::string getText();
 	void setPath(std::string path);
 	std::string getPath();
 	void setTabLabel(Gtk::Label *label);
