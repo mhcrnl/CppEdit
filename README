@@ -1,0 +1,3 @@
+CppEdit
+
+This is a Gtkmm clone of CppEditor. It uses the GNU autotools; to build, run the classic ./configure && make
