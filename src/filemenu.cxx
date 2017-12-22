@@ -4,6 +4,7 @@
 #include "filemenu.hh"
 #include "tabpane.hh"
 #include "actions.hh"
+#include "window.hh"
 
 FileMenu::FileMenu(Glib::RefPtr<Gtk::Application> appP) {
 	app = appP;
@@ -88,5 +89,7 @@ void FileMenu::onSaveAsClicked() {
 }
 
 void FileMenu::onQuitClicked() {
-	app->quit();
+	if (AppWindow::checkSave()==false) {
+		app->quit();
+	}
 }
