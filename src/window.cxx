@@ -10,6 +10,7 @@ AppWindow::AppWindow(Glib::RefPtr<Gtk::Application> appP) {
 
 	this->set_title("CppEdit");
 	this->set_default_size(500,400);
+	this->set_icon_name("accessories-text-editor");
 	
 	Gtk::VBox *mainLayout = new Gtk::VBox(false,false);
 	this->add(*mainLayout);
