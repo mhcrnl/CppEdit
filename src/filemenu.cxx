@@ -1,9 +1,7 @@
 #include <gtkmm/menu.h>
-#include <gtkmm/filechooserdialog.h>
 
 #include "filemenu.hh"
 #include "tabpane.hh"
-#include "editor.hh"
 #include "actions.hh"
 
 FileMenu::FileMenu(Glib::RefPtr<Gtk::Application> appP) {
@@ -16,16 +14,19 @@ FileMenu::FileMenu(Glib::RefPtr<Gtk::Application> appP) {
 	newFile = new MenuItem("New");
 	open = new MenuItem("Open");
 	save = new MenuItem("Save");
+	saveAs = new MenuItem("Save As");
 	quit = new MenuItem("Quit");
 	
 	newFile->signal_activate().connect(sigc::mem_fun(*this,&FileMenu::onNewFileClicked));
 	open->signal_activate().connect(sigc::mem_fun(*this,&FileMenu::onOpenClicked));
 	save->signal_activate().connect(sigc::mem_fun(*this,&FileMenu::onSaveClicked));
+	saveAs->signal_activate().connect(sigc::mem_fun(*this,&FileMenu::onSaveAsClicked));
 	quit->signal_activate().connect(sigc::mem_fun(*this,&FileMenu::onQuitClicked));
 	
 	menu->append(*newFile);
 	menu->append(*open);
 	menu->append(*save);
+	menu->append(*saveAs);
 	menu->append(*quit);
 }
 
@@ -34,6 +35,7 @@ FileMenu::~FileMenu() {
 	delete newFile;
 	delete open;
 	delete save;
+	delete saveAs;
 	delete quit;
 }
 
@@ -42,21 +44,15 @@ void FileMenu::onNewFileClicked() {
 }
 
 void FileMenu::onOpenClicked() {
-	Gtk::FileChooserDialog *dialog = new Gtk::FileChooserDialog("Open File");
-	dialog->add_button("_Cancel",Gtk::RESPONSE_CANCEL);
-	dialog->add_button("_Open",Gtk::RESPONSE_OK);
-	
-	int ret = dialog->run();
-	if (ret==Gtk::RESPONSE_OK) {
-		std::string selected = dialog->get_filename();
-		delete dialog;
-		
-		Actions::openFile(selected);
-	}
+	Actions::openFile();
 }
 
 void FileMenu::onSaveClicked() {
 	Actions::saveFile();
+}
+
+void FileMenu::onSaveAsClicked() {
+	Actions::saveFileAs();
 }
 
 void FileMenu::onQuitClicked() {

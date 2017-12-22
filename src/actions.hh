@@ -4,6 +4,7 @@
 
 class Actions {
 public:
-	static void openFile(std::string path);
+	static void openFile();
 	static void saveFile();
+	static void saveFileAs();
 };
