@@ -2,6 +2,7 @@
 
 Editor::Editor() {
 	edit = new Gtk::TextView;
+	edit->set_wrap_mode(Gtk::WRAP_WORD);
 	this->add(*edit);
 }
 

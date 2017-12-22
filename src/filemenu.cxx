@@ -1,4 +1,6 @@
 #include <gtkmm/menu.h>
+#include <gtkmm/filechooserdialog.h>
+#include <fstream>
 
 #include "filemenu.hh"
 #include "tabpane.hh"
@@ -36,7 +38,28 @@ void FileMenu::onNewFileClicked() {
 }
 
 void FileMenu::onOpenClicked() {
+	Gtk::FileChooserDialog *dialog = new Gtk::FileChooserDialog("Open File");
+	dialog->add_button("_Cancel",Gtk::RESPONSE_CANCEL);
+	dialog->add_button("_Open",Gtk::RESPONSE_OK);
 	
+	int ret = dialog->run();
+	if (ret==Gtk::RESPONSE_OK) {
+		std::string selected = dialog->get_filename();
+		delete dialog;
+		
+		std::ifstream reader(selected);
+		std::string content = "";
+		if (reader.is_open()) {
+			std::string line = "";
+			while (getline(reader,line)) {
+				content+=line+"\n";
+			}
+			reader.close();
+		}
+		
+		Editor *edit = TabPane::currentWidget();
+		edit->setText(content);
+	}
 }
 
 void FileMenu::onQuitClicked() {
