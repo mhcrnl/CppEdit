@@ -4,6 +4,7 @@
 
 #include "window.hh"
 #include "header.hh"
+#include "toolbar.hh"
 #include "tabpane.hh"
 #include "editor.hh"
 
@@ -20,8 +21,10 @@ AppWindow::AppWindow(Glib::RefPtr<Gtk::Application> appP) {
 	
 	TabPane *tabpane = new TabPane;
 	HeaderBar *titleBar = new HeaderBar(app);
+	ToolBar *toolbar = new ToolBar;
 	
 	this->set_titlebar(*titleBar);
+	mainLayout->pack_start(*toolbar,false,false,0);
 	mainLayout->pack_start(*tabpane,true,true,0);
 }
 
