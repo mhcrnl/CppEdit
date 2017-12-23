@@ -3,6 +3,7 @@
 #include <gtkmm/messagedialog.h>
 
 #include "window.hh"
+#include "header.hh"
 #include "menubar.hh"
 #include "tabpane.hh"
 #include "editor.hh"
@@ -11,7 +12,7 @@ AppWindow::AppWindow(Glib::RefPtr<Gtk::Application> appP) {
 	app = appP;
 
 	this->set_title("CppEdit");
-	this->set_default_size(500,400);
+	this->set_default_size(800,600);
 	this->set_icon_name("accessories-text-editor");
 	this->signal_delete_event().connect(sigc::mem_fun(*this,&AppWindow::onWindowClosed));
 	
@@ -19,9 +20,9 @@ AppWindow::AppWindow(Glib::RefPtr<Gtk::Application> appP) {
 	this->add(*mainLayout);
 	
 	TabPane *tabpane = new TabPane;
-	Menubar *menubar = new Menubar(appP);
+	HeaderBar *titleBar = new HeaderBar(app);
 	
-	mainLayout->pack_start(*menubar,false,false,0);
+	this->set_titlebar(*titleBar);
 	mainLayout->pack_start(*tabpane,true,true,0);
 }
 

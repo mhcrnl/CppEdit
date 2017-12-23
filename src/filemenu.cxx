@@ -11,7 +11,7 @@ FileMenu::FileMenu(Glib::RefPtr<Gtk::Application> appP) {
 	this->set_label("File");
 	
 	menu = new Gtk::Menu;
-	this->set_submenu(*menu);
+	this->set_popup(*menu);
 	
 	newFile = new Gtk::ImageMenuItem("New");
 	open = new Gtk::ImageMenuItem("Open");
@@ -56,6 +56,8 @@ FileMenu::FileMenu(Glib::RefPtr<Gtk::Application> appP) {
 	menu->append(*save);
 	menu->append(*saveAs);
 	menu->append(*quit);
+	
+	menu->show_all();
 }
 
 FileMenu::~FileMenu() {
