@@ -3,7 +3,6 @@ bin_PROGRAMS=CppEdit
 
 CppEdit_SOURCES=main.cxx \
 	window.cxx \
-	menubar.cxx \
 	filemenu.cxx \
 	tabpane.cxx \
 	editor.cxx \

@@ -4,7 +4,6 @@
 
 #include "window.hh"
 #include "header.hh"
-#include "menubar.hh"
 #include "tabpane.hh"
 #include "editor.hh"
 
