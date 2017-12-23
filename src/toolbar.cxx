@@ -1,4 +1,6 @@
 #include "toolbar.hh"
+#include "tabpane.hh"
+#include "actions.hh"
 
 ToolBar::ToolBar() {
 	newFile = new Gtk::ToolButton;
@@ -23,6 +25,11 @@ ToolBar::ToolBar() {
 	undo->set_icon_name("edit-undo");
 	redo->set_icon_name("edit-redo");
 	
+	newFile->signal_clicked().connect(sigc::mem_fun(*this,&ToolBar::onNewFileClicked));
+	openFile->signal_clicked().connect(sigc::mem_fun(*this,&ToolBar::onOpenFileClicked));
+	saveFile->signal_clicked().connect(sigc::mem_fun(*this,&ToolBar::onSaveFileClicked));
+	saveFileAs->signal_clicked().connect(sigc::mem_fun(*this,&ToolBar::onSaveFileAsClicked));
+	
 	this->append(*newFile);
 	this->append(*openFile);
 	this->append(*saveFile);
@@ -46,4 +53,20 @@ ToolBar::~ToolBar() {
 	delete selectAll;
 	delete undo;
 	delete redo;
+}
+
+void ToolBar::onNewFileClicked() {
+	TabPane::addNewTab();
+}
+
+void ToolBar::onOpenFileClicked() {
+	Actions::openFile();
+}
+
+void ToolBar::onSaveFileClicked() {
+	Actions::saveFile();
+}
+
+void ToolBar::onSaveFileAsClicked() {
+	Actions::saveFileAs();
 }

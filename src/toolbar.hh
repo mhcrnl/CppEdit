@@ -11,4 +11,9 @@ private:
 	Gtk::ToolButton *newFile, *openFile, *saveFile, *saveFileAs;
 	Gtk::ToolButton *cut, *copy, *paste, *selectAll;
 	Gtk::ToolButton *undo, *redo;
+	
+	void onNewFileClicked();
+	void onOpenFileClicked();
+	void onSaveFileClicked();
+	void onSaveFileAsClicked();
 };
