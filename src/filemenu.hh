@@ -1,24 +1,21 @@
 #pragma once
 
-#include <gtkmm/menubutton.h>
+#include <gtkmm/menuitem.h>
 #include <gtkmm/imagemenuitem.h>
-#include <gtkmm/application.h>
 #include <gtkmm/menu.h>
 #include <gtkmm/image.h>
 
-class FileMenu : public Gtk::MenuButton {
+class FileMenu : public Gtk::MenuItem {
 public:
-	FileMenu(Glib::RefPtr<Gtk::Application> appP);
+	FileMenu();
 	~FileMenu();
 private:
-	Glib::RefPtr<Gtk::Application> app;
 	Gtk::Menu *menu;
-	Gtk::ImageMenuItem *newFile, *open, *save, *saveAs, *quit;
-	Gtk::Image *newFileIcon, *openIcon, *saveIcon, *saveAsIcon, *quitIcon;
+	Gtk::ImageMenuItem *newFile, *open, *save, *saveAs;
+	Gtk::Image *newFileIcon, *openIcon, *saveIcon, *saveAsIcon;
 	
 	void onNewFileClicked();
 	void onOpenClicked();
 	void onSaveClicked();
 	void onSaveAsClicked();
-	void onQuitClicked();
 };
