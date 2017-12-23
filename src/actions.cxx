@@ -80,3 +80,11 @@ void Actions::saveFileAs() {
 void Actions::cut() {
 	TabPane::currentWidget()->cut();
 }
+
+void Actions::copy() {
+	TabPane::currentWidget()->copy();
+}
+
+void Actions::paste() {
+	TabPane::currentWidget()->paste();
+}

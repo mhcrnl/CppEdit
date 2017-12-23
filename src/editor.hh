@@ -22,6 +22,8 @@ public:
 	void setSaved(bool s);
 	bool isSaved();
 	void cut();
+	void copy();
+	void paste();
 private:
 	Gtk::TextView *edit;
 	std::string filePath;

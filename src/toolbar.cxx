@@ -30,6 +30,8 @@ ToolBar::ToolBar() {
 	saveFile->signal_clicked().connect(sigc::mem_fun(*this,&ToolBar::onSaveFileClicked));
 	saveFileAs->signal_clicked().connect(sigc::mem_fun(*this,&ToolBar::onSaveFileAsClicked));
 	cut->signal_clicked().connect(sigc::mem_fun(*this,&ToolBar::onCutClicked));
+	copy->signal_clicked().connect(sigc::mem_fun(*this,&ToolBar::onCopyClicked));
+	paste->signal_clicked().connect(sigc::mem_fun(*this,&ToolBar::onPasteClicked));
 	
 	this->append(*newFile);
 	this->append(*openFile);
@@ -74,4 +76,12 @@ void ToolBar::onSaveFileAsClicked() {
 
 void ToolBar::onCutClicked() {
 	Actions::cut();
+}
+
+void ToolBar::onCopyClicked() {
+	Actions::copy();
+}
+
+void ToolBar::onPasteClicked() {
+	Actions::paste();
 }

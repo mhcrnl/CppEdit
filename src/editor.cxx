@@ -63,6 +63,16 @@ void Editor::cut() {
 	edit->get_buffer()->cut_clipboard(clip,true);
 }
 
+void Editor::copy() {
+	Glib::RefPtr<Gtk::Clipboard> clip = Gtk::Clipboard::get();
+	edit->get_buffer()->copy_clipboard(clip);
+}
+
+void Editor::paste() {
+	Glib::RefPtr<Gtk::Clipboard> clip = Gtk::Clipboard::get();
+	edit->get_buffer()->paste_clipboard(clip,true);
+}
+
 void Editor::onChanged() {
 	saveStatus->set_text("*");
 	saved = false;

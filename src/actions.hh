@@ -8,4 +8,6 @@ public:
 	static void saveFile();
 	static void saveFileAs();
 	static void cut();
+	static void copy();
+	static void paste();
 };

@@ -17,4 +17,6 @@ private:
 	void onSaveFileClicked();
 	void onSaveFileAsClicked();
 	void onCutClicked();
+	void onCopyClicked();
+	void onPasteClicked();
 };
