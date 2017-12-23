@@ -2,6 +2,7 @@
 
 #include <gtkmm/scrolledwindow.h>
 #include <gtkmm/textview.h>
+#include <gtkmm/textbuffer.h>
 #include <gtkmm/label.h>
 #include <string>
 
@@ -20,6 +21,7 @@ public:
 	bool isUntitled();
 	void setSaved(bool s);
 	bool isSaved();
+	void cut();
 private:
 	Gtk::TextView *edit;
 	std::string filePath;

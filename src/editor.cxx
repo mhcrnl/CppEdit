@@ -1,3 +1,5 @@
+#include <gtkmm/clipboard.h>
+
 #include "editor.hh"
 
 Editor::Editor() {
@@ -54,6 +56,11 @@ void Editor::setSaved(bool s) {
 
 bool Editor::isSaved() {
 	return saved;
+}
+
+void Editor::cut() {
+	Glib::RefPtr<Gtk::Clipboard> clip = Gtk::Clipboard::get();
+	edit->get_buffer()->cut_clipboard(clip,true);
 }
 
 void Editor::onChanged() {

@@ -16,4 +16,5 @@ private:
 	void onOpenFileClicked();
 	void onSaveFileClicked();
 	void onSaveFileAsClicked();
+	void onCutClicked();
 };

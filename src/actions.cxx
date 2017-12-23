@@ -76,3 +76,7 @@ void Actions::saveFileAs() {
 		return;
 	}
 }
+
+void Actions::cut() {
+	TabPane::currentWidget()->cut();
+}
