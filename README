@@ -1,3 +1,5 @@
 CppEdit
 
+Notice: This is functional, but in complete.
+
 This a simple text editor written in C++ using Gtk+ (Gtkmm, to be exact). It is similar to my other editor, CppEditor. I wrote this to learn about Gtk, so this editor is rather incomplete.
